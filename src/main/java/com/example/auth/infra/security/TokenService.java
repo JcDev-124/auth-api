@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
+import java.time.temporal.ChronoUnit;
 
 @Service
 public class TokenService {
@@ -45,7 +46,8 @@ public class TokenService {
         }
     }
 
-    private Instant genExpirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-00:01"));
+    private Instant genExpirationDate() {
+        return Instant.now().plus(2, ChronoUnit.HOURS); // Usa UTC diretamente
     }
+
 }
